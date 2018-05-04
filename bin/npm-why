@@ -40,7 +40,7 @@ function main (args) {
     loadJSON('package-lock.json'),
     pkgName
   )
-  console.log(`\nWho required ${chalk.blue(pkgName)}:\n`)
+  console.log(`\n  Who required ${chalk.blue(pkgName)}:\n`)
   print(reasons)
   console.log('')
 }
