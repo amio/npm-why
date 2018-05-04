@@ -1,0 +1,64 @@
+#! /usr/env/bin node
+
+const path = require('path')
+const chalk = require('chalk')
+const mri = require('mri')
+const why = require('../')
+
+const help = `
+  ${chalk.bold('npm-why')} - Identifies why a package has been installed.
+
+  Usage
+
+    $ npm-why <package>
+
+  Examples
+
+    $ npm-why babel-core
+`
+
+const args = mri(process.argv.slice(2), {
+  boolean: ['help', 'version'],
+  alias: {
+    h: 'help',
+    v: 'version'
+  }
+})
+
+if (args.help) {
+  console.info(help)
+} else if (args.version) {
+  console.info(require('../package.json').version)
+} else {
+  main(args)
+}
+
+function main (args) {
+  const pkgName = args._[0]
+  const reasons = why(
+    loadJSON('package.json'),
+    loadJSON('package-lock.json'),
+    pkgName
+  )
+  console.log(`\nWho required ${chalk.blue(pkgName)}:\n`)
+  print(reasons)
+  console.log('')
+}
+
+function loadJSON (jsonFile) {
+  const abs = path.resolve(process.cwd(), jsonFile)
+  try {
+    return require(abs)
+  } catch (e) {
+    console.error(e)
+    process.exit(1)
+  }
+}
+
+function print (reasons) {
+  reasons.map(reason => {
+    return reason.reverse().map(rs => {
+      return chalk.blue(rs.name)// + chalk.dim('#' + rs.version)
+    }).join(' > ')
+  }).sort().forEach(x => console.log('  ' + x))
+}
