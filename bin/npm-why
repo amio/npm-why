@@ -40,9 +40,14 @@ function main (args) {
     loadJSON('package-lock.json'),
     pkgName
   )
-  console.log(`\n  Who required ${chalk.blue(pkgName)}:\n`)
-  print(reasons)
-  console.log('')
+
+  if (!reasons.length) {
+    console.log(`\n No one requires ${chalk.blue(pkgName)}.`)
+  } else {
+    console.log(`\n  Who required ${chalk.blue(pkgName)}:\n`)
+    print(reasons)
+    console.log('')
+  }
 }
 
 function loadJSON (jsonFile) {
@@ -50,7 +55,11 @@ function loadJSON (jsonFile) {
   try {
     return require(abs)
   } catch (e) {
-    console.error(e)
+    if (e.code === 'MODULE_NOT_FOUND') {
+      console.error(`${chalk.red('ERROR')} Cannot find ${chalk.green(jsonFile)}.`)
+    } else {
+      console.error(`${chalk.red('ERROR')} ${e.message}`)
+    }
     process.exit(1)
   }
 }
