@@ -1,9 +1,8 @@
 #! /usr/bin/env node
 
-const path = require('path')
 const chalk = require('chalk')
 const mri = require('mri')
-const why = require('../')
+const main = require('../cli-main.js')
 
 const help = `
   ${chalk.bold('npm-why')} - Identifies why a package has been installed.
@@ -30,44 +29,7 @@ if (args.help) {
 } else if (args.version) {
   console.info(require('../package.json').version)
 } else {
-  main(args)
-}
-
-function main (args) {
-  const pkgName = args._[0]
-  const reasons = why(
-    loadJSON('package.json'),
-    loadJSON('package-lock.json'),
-    pkgName
-  )
-
-  if (!reasons.length) {
-    console.log(`\n No one requires ${chalk.blue(pkgName)}.`)
-  } else {
-    console.log(`\n  Who required ${chalk.blue(pkgName)}:\n`)
-    print(reasons)
-    console.log('')
-  }
-}
-
-function loadJSON (jsonFile) {
-  const abs = path.resolve(process.cwd(), jsonFile)
-  try {
-    return require(abs)
-  } catch (e) {
-    if (e.code === 'MODULE_NOT_FOUND') {
-      console.error(`${chalk.red('ERROR')} Cannot find ${chalk.green(jsonFile)}.`)
-    } else {
-      console.error(`${chalk.red('ERROR')} ${e.message}`)
-    }
-    process.exit(1)
-  }
-}
-
-function print (reasons) {
-  reasons.map(reason => {
-    return reason.reverse().map(rs => {
-      return chalk.blue(rs.name)// + chalk.dim('#' + rs.version)
-    }).join(' > ')
-  }).sort().forEach(x => console.log('  ' + x))
+  const dir = process.cwd()
+  const pkg = args._[0]
+  main(dir, pkg)
 }
