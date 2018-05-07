@@ -29,9 +29,9 @@ function loadJSON (dir, jsonFile) {
     return require(path.resolve(dir, jsonFile))
   } catch (e) {
     if (e.code === 'MODULE_NOT_FOUND') {
-      console.error(`${chalk.red('ERROR')} Cannot find ${chalk.green(jsonFile)}.`)
+      console.error(`\n  ${chalk.red('ERROR')} Cannot find ${chalk.yellow(jsonFile)}.\n`)
     } else {
-      console.error(`${chalk.red('ERROR')} ${e.message}`)
+      console.error(`\n  ${chalk.red('ERROR')} ${e.message}\n`)
     }
     process.exit(1)
   }
