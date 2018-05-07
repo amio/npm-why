@@ -11,16 +11,18 @@ npm install -g npm-why
 ```
 
 ```bash
-  npm-why - Identifies why a package has been installed.
+Usage
 
-  Usage
+  $ npm-why <package>
 
-    $ npm-why <package>
+Examples
 
-  Examples
-
-    $ npm-why babel-core
+  $ npm-why babel-core
 ```
+
+## Related
+
+- [nls][nls-link] - Missing inspector for npm packages.
 
 ## License
 
@@ -29,4 +31,5 @@ ISC @ Amio
 [screenshot]: ./npm-why-screenshot.png
 [amio-link]: https://github.com/amio
 [npm-badge]: https://img.shields.io/npm/v/npm-why.svg?style=flat-square
-[npm-link]: http://www.npmjs.com/package/npm-why
+[npm-link]: https://www.npmjs.com/package/npm-why
+[nls-link]: https://github.com/amio/nls
