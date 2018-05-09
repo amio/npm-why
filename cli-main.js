@@ -39,8 +39,9 @@ function loadJSON (dir, jsonFile) {
 
 function print (reasons) {
   reasons.map(reason => {
+    const versionTag = chalk.dim('@' + reason[0].version)
     return reason.reverse().map(rs => {
-      return chalk.blue(rs.name)// + chalk.dim('#' + rs.version)
-    }).join(' > ')
+      return chalk.blue(rs.name)
+    }).join(' > ') + versionTag
   }).sort().forEach(x => console.log('  ' + x))
 }
