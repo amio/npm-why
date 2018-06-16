@@ -9,7 +9,7 @@ const help = `
 
   Usage
 
-    $ npm-why <package>
+    $ npm-why <package-name>
 
   Examples
 

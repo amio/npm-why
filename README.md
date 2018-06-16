@@ -13,7 +13,7 @@ npm install -g npm-why
 ```bash
 Usage
 
-  $ npm-why <package>
+  $ npm-why <package-name>
 
 Examples
 

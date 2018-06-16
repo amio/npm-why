@@ -2,6 +2,8 @@ const path = require('path')
 const chalk = require('chalk')
 const why = require('./index.js')
 
+const PREFIX_ERROR = chalk.red('ERROR')
+
 /**
  * Run npm-why in a directory
  *
@@ -9,6 +11,11 @@ const why = require('./index.js')
  * @param {String} packageName The package to lookup
  */
 module.exports = function main (dir, packageName) {
+  if (typeof packageName !== 'string') {
+    console.error(`\n  ${PREFIX_ERROR} A <package-name> is required.`)
+    process.exit(1)
+  }
+
   const reasons = why(
     loadJSON(dir, 'package.json'),
     loadJSON(dir, 'package-lock.json'),
@@ -29,9 +36,9 @@ function loadJSON (dir, jsonFile) {
     return require(path.resolve(dir, jsonFile))
   } catch (e) {
     if (e.code === 'MODULE_NOT_FOUND') {
-      console.error(`\n  ${chalk.red('ERROR')} Cannot find ${chalk.yellow(jsonFile)}.\n`)
+      console.error(`\n  ${PREFIX_ERROR} Cannot find ${chalk.yellow(jsonFile)}.\n`)
     } else {
-      console.error(`\n  ${chalk.red('ERROR')} ${e.message}\n`)
+      console.error(`\n  ${PREFIX_ERROR} ${e.message}\n`)
     }
     process.exit(1)
   }
