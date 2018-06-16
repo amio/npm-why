@@ -1,0 +1,6 @@
+{
+  "private": true,
+  "dependencies": {
+    "npm-why": "1.1.0"
+  }
+}

@@ -8,7 +8,8 @@
   "author": "Amio <amio.cn@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "standard"
+    "pretest": "standard",
+    "test": "tap test/*.spec.js --reporter spec"
   },
   "dependencies": {
     "chalk": "^2.4.1",
@@ -16,6 +17,8 @@
     "npm-logical-tree": "^1.2.1"
   },
   "devDependencies": {
-    "standard": "^11.0.1"
+    "execa": "^0.10.0",
+    "standard": "^11.0.1",
+    "tap": "^12.0.1"
   }
 }
