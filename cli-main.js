@@ -26,7 +26,7 @@ module.exports = function main (dir, packageName) {
     console.log(`\n  No one requires ${chalk.blue(packageName)}.`)
   } else {
     console.log(`\n  Who required ${chalk.blue(packageName)}:\n`)
-    print(reasons)
+    print(reasons, path.parse(dir).name)
     console.log('')
   }
 }
@@ -44,11 +44,12 @@ function loadJSON (dir, jsonFile) {
   }
 }
 
-function print (reasons) {
+function print (reasons, dirName) {
   reasons.map(reason => {
     const versionTag = chalk.dim('@' + reason[0].version)
     return reason.reverse().map(rs => {
-      return chalk.blue(rs.name)
+      // Use `dirName` if the package.json has no `name` field. #1
+      return chalk.blue(rs.name || dirName)
     }).join(' > ') + versionTag
   }).sort().forEach(x => console.log('  ' + x))
 }
