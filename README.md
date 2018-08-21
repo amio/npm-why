@@ -22,6 +22,7 @@ Examples
 
 ## Related
 
+- [yarn-why][yarn-why-link] - Identifies why a package has been installed (by yarn.lock).
 - [nls][nls-link] - Missing inspector for npm packages.
 
 ## License
@@ -30,6 +31,7 @@ ISC @ Amio
 
 [screenshot]: ./npm-why-screenshot.png
 [amio-link]: https://github.com/amio
-[npm-badge]: https://img.shields.io/npm/v/npm-why.svg?style=flat-square
+[npm-badge]: https://flat.badgen.net/npm/v/npm-why
 [npm-link]: https://www.npmjs.com/package/npm-why
 [nls-link]: https://github.com/amio/nls
+[yarn-why-link]: https://github.com/amio/yarn-why
