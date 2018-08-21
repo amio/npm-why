@@ -19,7 +19,7 @@ module.exports = function main (dir, packageName) {
     console.log(`\n  No one requires ${kleur.blue(packageName)}.`)
   } else {
     console.log(`\n  Who required ${kleur.blue(packageName)}:\n`)
-    print(reasons)
+    print(reasons, path.parse(dir).name)
     console.log('')
   }
 }
@@ -37,11 +37,11 @@ function loadJSON (dir, jsonFile) {
   }
 }
 
-function print (reasons) {
+function print (reasons, dirName) {
   reasons.map(reason => {
     const versionTag = kleur.dim('@' + reason[0].version)
     return reason.reverse().map(rs => {
-      return kleur.blue(rs.name)
+      return kleur.blue(rs.name || dirName)
     }).join(' > ') + versionTag
   }).sort().forEach(x => console.log('  ' + x))
 }

@@ -13,7 +13,7 @@ tap.test('runs `--version`', async t => {
 })
 
 tap.test('runs `chalk`', async t => {
-  const { stdout } = await cli(['chalk'], { cwd: __dirname })
+  const { stdout } = await cli(['chalk', '--noir'], { cwd: __dirname })
   t.is(stdout.trim(), `Who required chalk:
 
   test > npm-why > chalk@2.4.1`, 'output correct result.')
@@ -21,7 +21,7 @@ tap.test('runs `chalk`', async t => {
 
 // Issue #1
 tap.test('Exit 1 if no <package-name> provided', async t => {
-  const { code, stderr } = await cli([], { 'reject': false })
+  const { code, stderr } = await cli(['--noir'], { 'reject': false })
   t.is(code, 1, 'exit code 1')
   t.is(stderr.trim(), 'ERROR A <package-name> is required.', 'output hint.')
 })
