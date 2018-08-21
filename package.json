@@ -12,7 +12,7 @@
     "test": "tap test/*.spec.js --reporter spec"
   },
   "dependencies": {
-    "chalk": "^2.4.1",
+    "kleur": "^2.0.1",
     "mri": "^1.1.1",
     "npm-logical-tree": "^1.2.1"
   },

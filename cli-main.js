@@ -1,8 +1,6 @@
 const path = require('path')
-const chalk = require('chalk')
+const kleur = require('kleur')
 const why = require('./index.js')
-
-const PREFIX_ERROR = chalk.red('ERROR')
 
 /**
  * Run npm-why in a directory
@@ -11,11 +9,6 @@ const PREFIX_ERROR = chalk.red('ERROR')
  * @param {String} packageName The package to lookup
  */
 module.exports = function main (dir, packageName) {
-  if (typeof packageName !== 'string') {
-    console.error(`\n  ${PREFIX_ERROR} A <package-name> is required.`)
-    process.exit(1)
-  }
-
   const reasons = why(
     loadJSON(dir, 'package.json'),
     loadJSON(dir, 'package-lock.json'),
@@ -23,10 +16,10 @@ module.exports = function main (dir, packageName) {
   )
 
   if (!reasons.length) {
-    console.log(`\n  No one requires ${chalk.blue(packageName)}.`)
+    console.log(`\n  No one requires ${kleur.blue(packageName)}.`)
   } else {
-    console.log(`\n  Who required ${chalk.blue(packageName)}:\n`)
-    print(reasons, path.parse(dir).name)
+    console.log(`\n  Who required ${kleur.blue(packageName)}:\n`)
+    print(reasons)
     console.log('')
   }
 }
@@ -36,20 +29,19 @@ function loadJSON (dir, jsonFile) {
     return require(path.resolve(dir, jsonFile))
   } catch (e) {
     if (e.code === 'MODULE_NOT_FOUND') {
-      console.error(`\n  ${PREFIX_ERROR} Cannot find ${chalk.yellow(jsonFile)}.\n`)
+      console.error(`\n  ${kleur.red('ERROR')} Cannot find ${kleur.yellow(jsonFile)}.\n`)
     } else {
-      console.error(`\n  ${PREFIX_ERROR} ${e.message}\n`)
+      console.error(`\n  ${kleur.red('ERROR')} ${e.message}\n`)
     }
     process.exit(1)
   }
 }
 
-function print (reasons, dirName) {
+function print (reasons) {
   reasons.map(reason => {
-    const versionTag = chalk.dim('@' + reason[0].version)
+    const versionTag = kleur.dim('@' + reason[0].version)
     return reason.reverse().map(rs => {
-      // Use `dirName` if the package.json has no `name` field. #1
-      return chalk.blue(rs.name || dirName)
+      return kleur.blue(rs.name)
     }).join(' > ') + versionTag
   }).sort().forEach(x => console.log('  ' + x))
 }
