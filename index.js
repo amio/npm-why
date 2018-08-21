@@ -5,10 +5,9 @@ const logicalTree = require('npm-logical-tree')
  *
  * @param {Object} pkg package.json
  * @param {Object} pkgLock package-lock.json
- * @param {String} target target package name
- * @param {Function} printer
+ * @param {String} target target package name to lookup
  */
-module.exports = function (pkg, pkgLock, name, printer) {
+module.exports = function (pkg, pkgLock, name) {
   const tree = logicalTree(pkg, pkgLock)
 
   // Find target deps
