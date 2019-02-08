@@ -29,7 +29,7 @@ Examples
 
 ISC @ Amio
 
-[screenshot]: ./npm-why-screenshot.png
+[screenshot]: ./screenshot.png
 [amio-link]: https://github.com/amio
 [npm-badge]: https://flat.badgen.net/npm/v/npm-why
 [npm-link]: https://www.npmjs.com/package/npm-why
