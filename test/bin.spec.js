@@ -21,7 +21,7 @@ tap.test('runs `chalk`', async t => {
 
 // Issue #1
 tap.test('Exit 1 if no <package-name> provided', async t => {
-  const { code, stderr } = await cli(['--noir'], { 'reject': false })
-  t.is(code, 1, 'exit code 1')
+  const { exitCode, stderr } = await cli(['--noir'], { reject: false })
+  t.is(exitCode, 1, 'exit code 1')
   t.is(stderr.trim(), 'ERROR A <package-name> is required.', 'output hint.')
 })
