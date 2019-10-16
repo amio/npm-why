@@ -17,7 +17,7 @@
     "npm-logical-tree": "^1.2.1"
   },
   "devDependencies": {
-    "execa": "^2.0.4",
+    "execa": "^3.1.0",
     "standard": "^14.0.2",
     "tap": "^14.1.10"
   },
