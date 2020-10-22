@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "execa": "^3.3.0",
-    "standard": "^14.0.2",
+    "standard": "^15.0.0",
     "tap": "^14.1.10"
   },
   "engines": {
