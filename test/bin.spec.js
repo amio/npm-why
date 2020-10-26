@@ -16,7 +16,7 @@ tap.test('runs `chalk`', async t => {
   const { stdout } = await cli(['chalk', '--noir'], { cwd: __dirname })
   t.is(stdout.trim(), `Who required chalk:
 
-  test > npm-why > chalk@2.4.1`, 'output correct result.')
+  npm-why > chalk@2.4.1`, 'output correct result.')
 })
 
 // Issue #1
