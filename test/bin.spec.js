@@ -12,8 +12,17 @@ tap.test('runs `--version`', async t => {
   t.is(stdout, packageJson.version, 'output version.')
 })
 
-tap.test('runs `chalk`', async t => {
-  const { stdout } = await cli(['chalk', '--noir'], { cwd: __dirname })
+tap.test('runs `chalk` on v1 lockfile', async t => {
+  const cwd = path.join(__dirname, 'fixtures', 'lockfile-v1')
+  const { stdout } = await cli(['chalk', '--noir'], { cwd })
+  t.is(stdout.trim(), `Who required chalk:
+
+  npm-why > chalk@2.4.1`, 'output correct result.')
+})
+
+tap.test('runs `chalk` on v2 lockfile', async t => {
+  const cwd = path.join(__dirname, 'fixtures', 'lockfile-v2')
+  const { stdout } = await cli(['chalk', '--noir'], { cwd })
   t.is(stdout.trim(), `Who required chalk:
 
   npm-why > chalk@2.4.1`, 'output correct result.')
