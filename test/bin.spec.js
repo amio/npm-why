@@ -17,7 +17,7 @@ tap.test('runs `chalk` on v1 lockfile', async t => {
   const { stdout } = await cli(['chalk', '--noir'], { cwd })
   t.is(stdout.trim(), `Who required chalk:
 
-  npm-why > chalk@2.4.1`, 'output correct result.')
+  lockfile-v1 > npm-why > chalk@2.4.1`, 'output correct result.')
 })
 
 tap.test('runs `chalk` on v2 lockfile', async t => {
@@ -25,7 +25,7 @@ tap.test('runs `chalk` on v2 lockfile', async t => {
   const { stdout } = await cli(['chalk', '--noir'], { cwd })
   t.is(stdout.trim(), `Who required chalk:
 
-  npm-why > chalk@2.4.1`, 'output correct result.')
+  lockfile-v2 > npm-why > chalk@2.4.1`, 'output correct result.')
 })
 
 // Issue #1

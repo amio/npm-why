@@ -22,6 +22,10 @@ async function collectReasons (dir, packageName) {
     }
   }
 
+  // prepand root package info to every reason chain
+  const root = { name: tree.name, version: tree.version }
+  reasons = reasons.map(chain => chain.concat(root))
+
   return reasons
 }
 
