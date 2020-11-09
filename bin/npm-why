@@ -57,6 +57,4 @@ async function main (dir, packageName) {
     printReasons(reasons, path.parse(dir).name)
     console.log('\n')
   }
-
-  return
 }

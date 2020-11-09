@@ -10,7 +10,7 @@
   "author": "Amio <amio.cn@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "pretest": "standard",
+    "pretest": "standard bin/*",
     "test": "tap test/*.spec.js --reporter spec"
   },
   "dependencies": {
