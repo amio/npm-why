@@ -1,5 +1,24 @@
+const path = require('path')
 const kleur = require('kleur')
 const Arborist = require('@npmcli/arborist')
+
+/**
+ * Run npm-why in a directory
+ *
+ * @param {String} dir Workding directory
+ * @param {String} packageName The package to lookup
+ */
+async function main (dir, packageName) {
+  const reasons = await collectReasons(dir, packageName)
+
+  if (!reasons.length) {
+    console.log(`\n  No one requires ${kleur.blue(packageName)}.`)
+  } else {
+    console.log(`\n  Who required ${kleur.blue(packageName)}:\n`)
+    printReasons(reasons, path.parse(dir).name)
+    console.log('\n')
+  }
+}
 
 /**
  * Run npm-why in a directory
@@ -65,5 +84,6 @@ function printReasons (reasons, rootPackage) {
 
 module.exports = {
   collectReasons,
-  printReasons
+  printReasons,
+  main
 }
