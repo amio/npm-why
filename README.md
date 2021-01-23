@@ -20,6 +20,12 @@ Examples
   $ npm-why babel-core
 ```
 
+or without installation:
+
+```bash
+$ npx npm-why babel-core
+```
+
 ## Related
 
 - [yarn-why][yarn-why-link] - Identifies why a package has been installed (by yarn.lock).
