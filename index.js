@@ -9,7 +9,11 @@ const Arborist = require('@npmcli/arborist')
  * @param {String} packageName The package to lookup
  */
 async function main (dir, packageName) {
-  const reasons = await collectReasons(dir, packageName)
+  const reasons = await collectReasons(dir, packageName).catch(e => {
+    if (e.code === 'ENOLOCK') {
+      throw new Error('package.json or lockfile not found.')
+    }
+  })
 
   if (!reasons.length) {
     console.log(`\n  No one requires ${kleur.blue(packageName)}.`)
