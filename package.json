@@ -11,10 +11,10 @@
   "license": "MIT",
   "scripts": {
     "pretest": "standard bin/*",
-    "test": "tap test/*.spec.js --reporter spec"
+    "test": "tap test/*.spec.js --reporter spec --no-coverage"
   },
   "dependencies": {
-    "@npmcli/arborist": "^2.0.0",
+    "@npmcli/arborist": "^4.0.3",
     "kleur": "^4.1.3",
     "mri": "^1.1.1"
   },
@@ -22,6 +22,6 @@
     "@types/node": "^12.19.14",
     "execa": "^5.0.0",
     "standard": "^16.0.2",
-    "tap": "^14.11.0"
+    "tap": "^15.0.10"
   }
 }
