@@ -37,6 +37,22 @@ tap.test('runs `eiyo` on v2 lockfile', async t => {
 // Issue #1
 tap.test('Exit 1 if no <package-name> provided', async t => {
   const { exitCode, stderr } = await cli(['--noir'], { reject: false })
-  t.is(exitCode, 1, 'exit code 1')
-  t.is(stderr.trim(), 'ERROR A <package-name> is required.', 'output hint.')
+  t.equal(exitCode, 1, 'exit code 1')
+  t.equal(stderr.trim(), 'ERROR A <package-name> is required.', 'output hint.')
+})
+
+// Issue #176
+tap.test('Exit 1 if no package.json presented', async t => {
+  const cwd = path.join(__dirname, 'fixtures')
+  const { exitCode, stderr } = await cli(['eiyo', '--noir'], { cwd, reject: false})
+  t.equal(exitCode, 1, 'exit code 1')
+  t.equal(stderr.trim(), 'ERROR package.json or lockfile not found.')
+})
+
+// Issue #176
+tap.test('Exit 1 if no lockfile presented', async t => {
+  const cwd = path.join(__dirname, 'fixtures/no-lockfile')
+  const { exitCode, stderr } = await cli(['eiyo', '--noir'], { cwd, reject: false})
+  t.equal(exitCode, 1, 'exit code 1')
+  t.equal(stderr.trim(), 'ERROR package.json or lockfile not found.')
 })

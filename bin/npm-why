@@ -37,5 +37,8 @@ if (args.help) {
   kleur.enabled = !args.noir
   const dir = process.cwd()
   const pkg = args._[0]
-  main(dir, pkg)
+  main(dir, pkg).catch(error => {
+    console.error(`\n  ${kleur.red('ERROR')} ${error.message}`)
+    process.exitCode = 1
+  })
 }
