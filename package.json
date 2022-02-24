@@ -14,7 +14,7 @@
     "test": "tap test/*.spec.js --reporter spec --no-coverage"
   },
   "dependencies": {
-    "@npmcli/arborist": "^4.0.3",
+    "@npmcli/arborist": "^5.0.0",
     "kleur": "^4.1.3",
     "mri": "^1.1.1"
   },
