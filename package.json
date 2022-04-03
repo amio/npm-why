@@ -14,14 +14,17 @@
     "test": "tap test/*.spec.js --reporter spec --no-coverage"
   },
   "dependencies": {
-    "@npmcli/arborist": "^4.0.3",
+    "@npmcli/arborist": "^5.0.4",
     "kleur": "^4.1.3",
     "mri": "^1.1.1"
   },
   "devDependencies": {
     "@types/node": "^12.19.14",
-    "execa": "^5.0.0",
+    "execa": "^5.1.1",
     "standard": "^16.0.2",
-    "tap": "^15.0.10"
+    "tap": "^16.0.1"
+  },
+  "engines": {
+    "node": ">=12.0.0"
   }
 }
