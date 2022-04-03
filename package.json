@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "@types/node": "^12.19.14",
-    "execa": "^5.1.1",
+    "execa": "^6.1.0",
     "standard": "^16.0.2",
     "tap": "^16.0.1"
   },
