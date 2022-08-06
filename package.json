@@ -21,7 +21,7 @@
   "devDependencies": {
     "@types/node": "^12.19.14",
     "execa": "^5.1.1",
-    "standard": "^16.0.2",
+    "standard": "^17.0.0",
     "tap": "^16.0.1"
   },
   "engines": {
