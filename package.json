@@ -1,6 +1,6 @@
 {
   "name": "npm-why",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "description": "Identifies why a package has been installed.",
   "main": "index.js",
   "bin": {
