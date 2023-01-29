@@ -62,7 +62,7 @@ function buildDependentsTree (node, paths = [], leafs = []) {
   }
 
   // prevent dead loops
-  if (paths.includes(name)) {
+  if (paths.map(p => p.name).includes(name)) {
     return { name, version, leafs }
   }
 
