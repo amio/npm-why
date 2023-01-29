@@ -12,6 +12,8 @@ async function main (dir, packageName) {
   const reasons = await collectReasons(dir, packageName).catch(e => {
     if (e.code === 'ENOLOCK') {
       throw new Error('package.json or lockfile not found.')
+    } else {
+      throw e;
     }
   })
 
