@@ -56,3 +56,22 @@ tap.test('Exit 1 if no lockfile presented', async t => {
   t.equal(exitCode, 1, 'exit code 1')
   t.equal(stderr.trim(), 'ERROR package.json or lockfile not found.')
 })
+
+// Issue #269
+tap.test('Support recursive dependencies', async t => {
+  const cwd = path.join(__dirname, 'fixtures/recursive-dependency')
+
+  {
+    const { stdout } = await cli(['a', '--noir'], { cwd })
+    t.equal(stdout.trim(), `Who required a:
+
+  recursive-dependency > a@1.0.0`, 'output correct result.')
+  }
+
+  {
+    const { stdout } = await cli(['b', '--noir'], { cwd })
+    t.equal(stdout.trim(), `Who required b:
+
+  recursive-dependency > a > b@1.0.0`, 'output correct result.')
+  }
+})
