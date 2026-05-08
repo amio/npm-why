@@ -1,0 +1,34 @@
+name: Publish Package
+
+on:
+  push:
+    tags:
+      - 'v*' # Trigger on version tags, e.g., v1.0.0
+
+permissions:
+  id-token: write # Required for OIDC
+  contents: write # Allows checking out the repository code and creating releases
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          registry-url: 'https://registry.npmjs.org' # Specifies the npm registry
+      - run: npm ci
+      - run: npm run build --if-present
+      - run: npm test
+      - run: unset NODE_AUTH_TOKEN; unset NPM_TOKEN # Unset the default token set by "actions/setup-node" to get OIDC publishing working
+      - run: npm publish # The npm CLI automatically uses the OIDC token
+
+      - name: Create GitHub Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" \
+            --title "$GITHUB_REF_NAME" \
+            --generate-notes
