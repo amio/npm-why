@@ -10,6 +10,8 @@ Identifies why a package has been installed.
 npm install -g npm-why
 ```
 
+Requires Node `^20.19.0 || >=22.12.0`.
+
 ```bash
 Usage
 
